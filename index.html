@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Portfolio</title>
+    <title>Natdanai-Masorn - Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -70,6 +70,43 @@
             z-index: 1;
             text-align: center;
             max-width: 800px;
+        }
+
+        /* Profile Image */
+        .profile-container {
+            margin-bottom: 2rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            object-fit: cover;
+            animation: floatProfile 3s ease-in-out infinite;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        @keyframes floatProfile {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         h1 {
@@ -172,6 +209,63 @@
             transform: translateY(-3px);
         }
 
+        .projects-section {
+            position: relative;
+            z-index: 1;
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-description {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
         .scroll-indicator {
             position: absolute;
             bottom: 30px;
@@ -192,6 +286,36 @@
             }
         }
 
+        .floating-decoration {
+            position: fixed;
+            opacity: 0.1;
+            z-index: 0;
+            animation: floatSlow 20s ease-in-out infinite;
+        }
+
+        .decoration-1 {
+            top: 10%;
+            left: 5%;
+            width: 100px;
+            animation-delay: 0s;
+        }
+
+        .decoration-2 {
+            bottom: 15%;
+            right: 8%;
+            width: 120px;
+            animation-delay: 5s;
+        }
+
+        @keyframes floatSlow {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(10deg);
+            }
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
@@ -202,27 +326,51 @@
             .description {
                 font-size: 1rem;
             }
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="particles" id="particles"></div>
     
+    <!-- Decorative floating elements -->
+    <svg class="floating-decoration decoration-1" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#ffffff" d="M45.8,-59.5C58.6,-50.3,67.8,-36.6,72.3,-21.3C76.8,-6,76.6,10.9,70.5,25.3C64.4,39.7,52.4,51.6,38.5,58.9C24.6,66.2,8.8,69,-7.1,68.6C-23,68.2,-39.1,64.6,-51.8,56.1C-64.5,47.6,-73.8,34.2,-77.2,19.2C-80.6,4.2,-78.1,-12.4,-71.1,-27C-64.1,-41.6,-52.6,-54.2,-39.1,-63.1C-25.6,-72,-12.8,-77.2,1.4,-79.1C15.6,-81,33,-79.7,45.8,-59.5Z" transform="translate(100 100)" />
+    </svg>
+    
+    <svg class="floating-decoration decoration-2" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#ffffff" d="M39.7,-54.3C51.4,-45.5,60.7,-34.2,65.9,-20.9C71.1,-7.6,72.2,7.7,67.8,21.3C63.4,34.9,53.5,46.8,41.3,54.6C29.1,62.4,14.6,66.1,-0.3,66.5C-15.1,66.9,-30.3,64,-42.8,56.4C-55.3,48.8,-65.2,36.5,-69.5,22.5C-73.8,8.5,-72.5,-7.2,-66.8,-20.7C-61.1,-34.2,-51,-45.5,-39.1,-54.2C-27.2,-62.9,-13.6,-69,0.4,-69.6C14.4,-70.2,28.1,-63.1,39.7,-54.3Z" transform="translate(100 100)" />
+    </svg>
+    
     <div class="container">
         <div class="content">
-            <h1>Natdanai-Masorn</h1>
-            <div class="subtitle">I'm a Student Devs From Thailand</div>
+            <!-- Profile Image -->
+            <div class="profile-container">
+                <img src="catmeme.png" 
+                     alt="Profile Photo" 
+                     class="profile-image">
+            </div>
+            
+            <h1>Your Name</h1>
+            <div class="subtitle">I'm Student From Thailand</div>
             <p class="description">
                 Welcome to my corner of the internet. I create beautiful, functional experiences 
                 that make a difference. Let's build something amazing together.
             </p>
             
             <div class="buttons">
-                <a href="https://github.com/Natdanai-Masorn" class="btn btn-primary">View My Work</a>
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#" class="btn btn-secondary">Get In Touch</a>
             </div>
             
             <div class="social-links">
-                <a href="https://github.com/Natdanai-Masorn" title="GitHub">
+                <a href="#" title="GitHub">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
@@ -247,7 +395,50 @@
         </div>
     </div>
 
+    <!-- Projects Section -->
+    <section class="projects-section" id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=400&fit=crop" 
+                     alt="Project 1" 
+                     class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Web Application</h3>
+                    <p class="project-description">
+                        A modern, responsive web application built with cutting-edge technologies.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop" 
+                     alt="Project 2" 
+                     class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Mobile Design</h3>
+                    <p class="project-description">
+                        Beautiful UI/UX design for iOS and Android platforms with intuitive navigation.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" 
+                     alt="Project 3" 
+                     class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Data Visualization</h3>
+                    <p class="project-description">
+                        Interactive dashboards and analytics tools for business intelligence.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <script>
+        // Create floating particles
         const particlesContainer = document.getElementById('particles');
         for (let i = 0; i < 50; i++) {
             const particle = document.createElement('div');
@@ -257,6 +448,20 @@
             particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
             particlesContainer.appendChild(particle);
         }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
